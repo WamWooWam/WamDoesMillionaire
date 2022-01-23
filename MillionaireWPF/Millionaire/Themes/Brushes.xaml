@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <LinearGradientBrush x:Key="ButtonFill" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#0236a7"/>
+        <GradientStop Color="#001e51" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SelectedAnswerFill" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#ee7d00"/>
+        <GradientStop Color="#f98700" Offset="0.5"/>
+        <GradientStop Color="#f49e00" Offset="0.95"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="CorrectAnswerFill" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#32e42f"/>
+        <GradientStop Color="#2ed129" Offset="0.33"/>
+        <GradientStop Color="#2ed129" Offset="0.95"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SilverMetalGradient" StartPoint="0,0" EndPoint="2,1">
+        <GradientStop Color="#b8b8b8"/>
+        <GradientStop Color="#FFFFFF" Offset="0.33"/>
+        <GradientStop Color="#b8b8b8" Offset="0.5"/>
+        <GradientStop Color="#FFFFFF" Offset="0.66"/>
+        <GradientStop Color="#b8b8b8" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="MillionaireOrange" Color="#eca214"/>
+    
+</ResourceDictionary>

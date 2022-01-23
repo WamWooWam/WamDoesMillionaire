@@ -1,0 +1,107 @@
+﻿<Window x:Class="Millionaire.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Millionaire" xmlns:controls="clr-namespace:Millionaire.Controls"
+        mc:Ignorable="d" 
+        Top="0" Left="0" Height="1080" Width="1920"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="MainWindow">
+    <Window.Resources>
+        <Storyboard x:Key="ShowSidebar">
+            <DoubleAnimation To="0"
+                             EasingFunction="{StaticResource EaseEnter}"
+                             Storyboard.TargetName="Sidebar"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.X)"/>
+        </Storyboard>
+        <Storyboard x:Key="HideSidebar">
+            <DoubleAnimation To="750"
+                             EasingFunction="{StaticResource EaseEnter}"
+                             Storyboard.TargetName="Sidebar"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.X)"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowQuestion">
+            <DoubleAnimation To="0"
+                             EasingFunction="{StaticResource EaseEnter}"
+                             Storyboard.TargetName="Question"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Storyboard x:Key="HideQuestion">
+            <DoubleAnimation To="600"
+                             Duration="0:0:0.5"
+                             EasingFunction="{StaticResource EaseExit}"
+                             Storyboard.TargetName="Question"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowAskTheAudience">
+            <DoubleAnimation To="0"
+                             EasingFunction="{StaticResource EaseEnter}"
+                             Storyboard.TargetName="AskTheAudience"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Storyboard x:Key="HideAskTheAudience">
+            <DoubleAnimation To="-650"
+                             Duration="0:0:0.5"
+                             EasingFunction="{StaticResource EaseExit}"
+                             Storyboard.TargetName="AskTheAudience"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowPhoneAFriend">
+            <DoubleAnimation To="0"
+                             EasingFunction="{StaticResource EaseEnter}"
+                             Storyboard.TargetName="PhoneAFriend"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Storyboard x:Key="HidePhoneAFriend">
+            <DoubleAnimation To="-650"
+                             BeginTime="0:0:1"
+                             Duration="0:0:0.5"
+                             EasingFunction="{StaticResource EaseExit}"
+                             Storyboard.TargetName="PhoneAFriend"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--<Image Source="C:\Users\Thomas\Documents\ShareX\Screenshots\2021-12\Millionaire_aPx3LiuNsn.png"
+               Grid.ColumnSpan="2"/>-->
+
+        <controls:QuestionLowerThird x:Name="Question" Grid.ColumnSpan="3" VerticalAlignment="Bottom" CacheMode="BitmapCache">
+            <controls:QuestionLowerThird.RenderTransform>
+                <TranslateTransform Y="500"/>
+            </controls:QuestionLowerThird.RenderTransform>
+        </controls:QuestionLowerThird>
+
+        <controls:ScoreboardControl x:Name="Sidebar"
+                                    Grid.Column="1">
+            <controls:ScoreboardControl.RenderTransform>
+                <TranslateTransform  X="750"/>
+            </controls:ScoreboardControl.RenderTransform>
+        </controls:ScoreboardControl>
+
+        <controls:AskTheAudienceControl x:Name="AskTheAudience"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right"
+                                        Margin="150,75">
+            <controls:AskTheAudienceControl.RenderTransform>
+                <TranslateTransform Y="-650"/>
+            </controls:AskTheAudienceControl.RenderTransform>
+        </controls:AskTheAudienceControl>
+
+        <controls:PhoneAFriendControl x:Name="PhoneAFriend"
+                                      Grid.ColumnSpan="2"
+                                      VerticalAlignment="Top"
+                                      HorizontalAlignment="Right"
+                                      Margin="150,75">
+            <controls:PhoneAFriendControl.RenderTransform>
+                <TranslateTransform Y="-650"/>
+            </controls:PhoneAFriendControl.RenderTransform>
+        </controls:PhoneAFriendControl>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Classic5050.png" />
+    <None Remove="Assets\ClassicATA.png" />
+    <None Remove="Assets\ClassicPAF.png" />
+    <None Remove="Effects\Desaturate.ps" />
+    <None Remove="Effects\DesaturateAndTint.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
+    <PackageReference Include="obs-websocket-dotnet" Version="4.9.1" />
+	<PackageReference Include="TwitchLib" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Classic5050.png" />
+    <Resource Include="Assets\ClassicATA.png" />
+    <Resource Include="Assets\ClassicPAF.png" />
+    <Resource Include="Effects\DesaturateAndTint.ps" />
+    <Resource Include="Effects\Desaturate.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\AllQuestions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\fuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

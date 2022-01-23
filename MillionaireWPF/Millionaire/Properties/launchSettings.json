@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Millionaire": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

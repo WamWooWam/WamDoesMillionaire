@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Millionaire.Controls.PhoneAFriendControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Millionaire.Controls"
+             mc:Ignorable="d" Width="360"
+              Height="360">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="3"
+                              Color="#000000"
+                              Opacity="0.66"
+                              BlurRadius="10"/>
+        </Grid.Effect>
+        <Ellipse Margin="52" Fill="{StaticResource ButtonFill}"/>
+        <Ellipse Margin="52" Stroke="{StaticResource SilverMetalGradient}"
+                     StrokeThickness="6">
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                      Color="#b8b8b8"
+                                      Opacity="1"
+                                      BlurRadius="10"/>
+            </Ellipse.Effect>
+        </Ellipse>
+        <local:RadialPanel Opacity="0.4">
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+            <Ellipse Width="14" Height="14" Fill="{StaticResource SilverMetalGradient}"/>
+        </local:RadialPanel>
+        <local:RadialPanel>
+            <Ellipse Width="14" Height="14" Fill="#00ff00" Visibility="{Binding PhoneAFriend.Seconds[0], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#3ffa00" Visibility="{Binding PhoneAFriend.Seconds[1], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#59f400" Visibility="{Binding PhoneAFriend.Seconds[2], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#6cef00" Visibility="{Binding PhoneAFriend.Seconds[3], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#7be900" Visibility="{Binding PhoneAFriend.Seconds[4], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#88e300" Visibility="{Binding PhoneAFriend.Seconds[5], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#94dd00" Visibility="{Binding PhoneAFriend.Seconds[6], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#9ed700" Visibility="{Binding PhoneAFriend.Seconds[7], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#a7d100" Visibility="{Binding PhoneAFriend.Seconds[8], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#b0cb00" Visibility="{Binding PhoneAFriend.Seconds[9], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#b8c500" Visibility="{Binding PhoneAFriend.Seconds[10], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#c0be00" Visibility="{Binding PhoneAFriend.Seconds[11], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#c7b800" Visibility="{Binding PhoneAFriend.Seconds[12], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#ceb100" Visibility="{Binding PhoneAFriend.Seconds[13], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#d4aa00" Visibility="{Binding PhoneAFriend.Seconds[14], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#d9a300" Visibility="{Binding PhoneAFriend.Seconds[15], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#df9c00" Visibility="{Binding PhoneAFriend.Seconds[16], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#e49400" Visibility="{Binding PhoneAFriend.Seconds[17], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#e88c00" Visibility="{Binding PhoneAFriend.Seconds[18], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#ec8400" Visibility="{Binding PhoneAFriend.Seconds[19], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#f07c00" Visibility="{Binding PhoneAFriend.Seconds[20], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#f37400" Visibility="{Binding PhoneAFriend.Seconds[21], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#f66b00" Visibility="{Binding PhoneAFriend.Seconds[22], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#f96100" Visibility="{Binding PhoneAFriend.Seconds[23], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#fb5800" Visibility="{Binding PhoneAFriend.Seconds[24], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#fc4d00" Visibility="{Binding PhoneAFriend.Seconds[25], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#fe4100" Visibility="{Binding PhoneAFriend.Seconds[26], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#ff3400" Visibility="{Binding PhoneAFriend.Seconds[27], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#ff2200" Visibility="{Binding PhoneAFriend.Seconds[28], Converter={StaticResource BoolVisibilityConverter}}"/>
+            <Ellipse Width="14" Height="14" Fill="#ff0000" Visibility="{Binding PhoneAFriend.Seconds[29], Converter={StaticResource BoolVisibilityConverter}}"/>
+        </local:RadialPanel>
+
+        <TextBlock Text="{Binding PhoneAFriend.Remaining}" 
+                       FontSize="124"
+                       FontFamily="Copperplate Gothic Std 32 BC"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center">
+
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="3"
+                              Color="#000000"
+                              Opacity="1"
+                              BlurRadius="6"/>
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</UserControl>

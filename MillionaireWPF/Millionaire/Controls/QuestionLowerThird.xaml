@@ -1,0 +1,274 @@
+﻿<UserControl x:Class="Millionaire.Controls.QuestionLowerThird"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Millionaire.Controls"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             d:DesignHeight="370" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <Storyboard x:Key="ShowWinnings">
+            <DoubleAnimation To="100"
+                             Storyboard.TargetName="MainTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="-150"
+                             Storyboard.TargetName="QuestionTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="0"
+                             Storyboard.TargetName="WinningsTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="0"
+                             Storyboard.TargetName="QuestionsGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowQuestion">
+            <DoubleAnimation To="0"
+                             Storyboard.TargetName="MainTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="0"
+                             Storyboard.TargetName="QuestionTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="150"
+                             Storyboard.TargetName="WinningsTransform"
+                             Storyboard.TargetProperty="Y"
+                             EasingFunction="{StaticResource EaseMove}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation To="1"
+                             Storyboard.TargetName="QuestionsGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             Duration="0:0:0.5"
+                             BeginTime="0:0:0.5"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Bottom"
+          Margin="0,25,0,50"
+          TextElement.FontFamily="Conduit ITC">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="MainTransform" Y="0"/>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <local:QuestionControl Grid.ColumnSpan="3">
+            <Grid ClipToBounds="True"
+                  SnapsToDevicePixels="True">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="3"
+                              Color="#000000"
+                              Opacity="1"
+                              BlurRadius="10"/>
+                </Grid.Effect>
+                <Grid x:Name="QuestionContainer">
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="QuestionTransform" Y="0"/>
+                    </Grid.RenderTransform>
+                    <TextBlock FontSize="48"
+                               Text="{Binding Question.Text}"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="White">
+                    </TextBlock>
+                </Grid>
+
+                <Grid x:Name="WinningsContainer"
+                      TextElement.Foreground="{DynamicResource MillionaireOrange}">
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="WinningsTransform" Y="150"/>
+                    </Grid.RenderTransform>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        
+                        <Rectangle Grid.Column="0"
+                                   Width="16"
+                                   Height="16" 
+                                   RenderTransformOrigin="0.5,0.5"
+                                   HorizontalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <RotateTransform Angle="45"/>
+                            </Rectangle.RenderTransform>
+                            <Rectangle.Effect>
+                                <DropShadowEffect Color="White"
+                                                  BlurRadius="20"
+                                                  Direction="0"
+                                                  ShadowDepth="0"/>
+                            </Rectangle.Effect>
+                            <Rectangle.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#ffffff" Offset="0"/>
+                                    <GradientStop Color="#b8b8b8" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <TextBlock x:Name="PositionText"
+                                   Grid.Column="1"
+                                   Margin="96,0"
+                                   FontFamily="Copperplate Gothic Std 32 BC"
+                                   FontWeight="Bold"
+                                   FontSize="96"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Text="{Binding CurrentWinnings}"/>
+
+                        <Rectangle Grid.Column="0"
+                                   Width="16"
+                                   Height="16" 
+                                   RenderTransformOrigin="0.5,0.5"
+                                   HorizontalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <RotateTransform Angle="45"/>
+                            </Rectangle.RenderTransform>
+                            <Rectangle.Effect>
+                                <DropShadowEffect Color="White"
+                                                  BlurRadius="20"
+                                                  Direction="0"
+                                                  ShadowDepth="0"/>
+                            </Rectangle.Effect>
+                            <Rectangle.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#ffffff" Offset="0"/>
+                                    <GradientStop Color="#b8b8b8" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </local:QuestionControl>
+
+        <Grid x:Name="QuestionsGrid"
+              Grid.ColumnSpan="3" 
+              Grid.Row="2"
+              Opacity="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="57.5"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="57.5"/>
+            </Grid.RowDefinitions>
+
+            <Line Grid.ColumnSpan="5"
+                      X1="0" Y1="28.75"
+                      X2="960" Y2="28.75"
+                      StrokeThickness="3"
+                      VerticalAlignment="Top"
+                      Visibility="Visible"
+                      Stroke="#b8b8b8">
+                <Line.Effect>
+                    <DropShadowEffect ShadowDepth="0"
+                                          Color="#FFFFFF"
+                                          Opacity="1"
+                                          BlurRadius="4"/>
+                </Line.Effect>
+            </Line>
+
+
+            <Line Grid.ColumnSpan="5"
+                      X1="960" Y1="28.75"
+                      X2="1920" Y2="28.75"
+                      StrokeThickness="3"
+                      VerticalAlignment="Top"
+                      Visibility="Visible"
+                      Stroke="#b8b8b8">
+                <Line.Effect>
+                    <DropShadowEffect ShadowDepth="0"
+                                          Color="#FFFFFF"
+                                          Opacity="1"
+                                          BlurRadius="4"/>
+                </Line.Effect>
+            </Line>
+
+            <Line Grid.ColumnSpan="5"
+                      Grid.Row="2"
+                      X1="0" Y1="28.75"
+                      X2="960" Y2="28.75"
+                      StrokeThickness="3"
+                      VerticalAlignment="Top"
+                      Visibility="Visible"
+                      Stroke="#b8b8b8">
+                <Line.Effect>
+                    <DropShadowEffect ShadowDepth="0"
+                                          Color="#FFFFFF"
+                                          Opacity="1"
+                                          BlurRadius="4"/>
+                </Line.Effect>
+            </Line>
+
+
+            <Line Grid.ColumnSpan="5"
+                      Grid.Row="2"
+                      X1="960" Y1="28.75"
+                      X2="1920" Y2="28.75"
+                      StrokeThickness="3"
+                      VerticalAlignment="Top"
+                      Visibility="Visible"
+                      Stroke="#b8b8b8">
+                <Line.Effect>
+                    <DropShadowEffect ShadowDepth="0"
+                                          Color="#FFFFFF"
+                                          Opacity="1"
+                                          BlurRadius="4"/>
+                </Line.Effect>
+            </Line>
+
+
+            <local:AnswerControl AnswerLetter="A"
+                                 AnswerText="{Binding Question.Choices[0]}"
+                                 IsSelected="{Binding Question.Answer1Selected}"
+                                 IsCorrect="{Binding Question.Answer1Correct}"
+                                 AnswerVisible="{Binding Question.Answer1Visible}"
+                                 Grid.Column="1"/>
+
+            <local:AnswerControl AnswerLetter="B"
+                                 AnswerText="{Binding Question.Choices[1]}"
+                                 IsSelected="{Binding Question.Answer2Selected}"
+                                 IsCorrect="{Binding Question.Answer2Correct}"
+                                 AnswerVisible="{Binding Question.Answer2Visible}"
+                                 Grid.Column="3"/>
+
+            <local:AnswerControl AnswerLetter="C"
+                                 AnswerText="{Binding Question.Choices[2]}"
+                                 IsSelected="{Binding Question.Answer3Selected}"
+                                 IsCorrect="{Binding Question.Answer3Correct}"
+                                 AnswerVisible="{Binding Question.Answer3Visible}"
+                                 Grid.Column="1"
+                                 Grid.Row="2"/>
+
+            <local:AnswerControl AnswerLetter="D"
+                                 AnswerText="{Binding Question.Choices[3]}"
+                                 IsSelected="{Binding Question.Answer4Selected}"
+                                 IsCorrect="{Binding Question.Answer4Correct}"
+                                 AnswerVisible="{Binding Question.Answer4Visible}"
+                                 Grid.Column="3"
+                                 Grid.Row="2"/>
+        </Grid>
+    </Grid>
+
+</UserControl>

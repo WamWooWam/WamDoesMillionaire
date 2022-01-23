@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="Millionaire.Controls.ScoreboardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Millionaire.Controls" 
+             xmlns:effects="clr-namespace:Millionaire.Effects" 
+             xmlns:converter="clr-namespace:Millionaire.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="600">
+    <UserControl.Resources>
+        <converter:BoolOpacityConverter x:Key="BoolOpacityConverter"/>
+        <converter:InverseBoolOpacityConverter x:Key="InverseBoolOpacityConverter"/>
+        <Storyboard x:Key="Highlight5050">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_5050" Storyboard.TargetProperty="ScaleX">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_5050" Storyboard.TargetProperty="ScaleY">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HighlightPAF">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_PAF" Storyboard.TargetProperty="ScaleX">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_PAF" Storyboard.TargetProperty="ScaleY">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HighlightATA">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_ATA" Storyboard.TargetProperty="ScaleX">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Scale_ATA" Storyboard.TargetProperty="ScaleY">
+                <LinearDoubleKeyFrame Value="1"/>
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5" />
+                <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.65" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <converter:LessThanConverter x:Key="LessThan"/>
+        <converter:EqualsConverter x:Key="Equals"/>
+    </UserControl.Resources>
+    <Grid Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <local:AuroraBackground Grid.RowSpan="3"/>
+
+        <Rectangle Width="4"
+                       Height="1080"
+                       Fill="White"
+                       Grid.RowSpan="3"
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Left">
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                      Color="#b8b8b8"
+                                      Opacity="1"
+                                      BlurRadius="10"/>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Grid Margin="50,50,100,50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="Lifeline_5050" 
+                   Source="../assets/Classic5050.png"      
+                   RenderTransformOrigin="0.5,0.5"
+                   Opacity="{Binding Has5050, Converter={StaticResource BoolOpacityConverter}, ConverterParameter=0.5}"
+                   Grid.Column="0" 
+                   Margin="12,0">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="Scale_5050"/>
+                </Image.RenderTransform>
+                <Image.Effect>
+                    <effects:Desaturate Strength="{Binding Has5050, Converter={StaticResource InverseBoolOpacityConverter}}" />
+                </Image.Effect>
+            </Image>
+            <Image x:Name="Lifeline_PAF"
+                   Source="../Assets/ClassicPAF.png" 
+                   RenderTransformOrigin="0.5,0.5"
+                   Opacity="{Binding HasPhoneAFriend, Converter={StaticResource BoolOpacityConverter}, ConverterParameter=0.5}"
+                   Grid.Column="1" 
+                   Margin="12,0">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="Scale_PAF"/>
+                </Image.RenderTransform>
+                <Image.Effect>
+                    <effects:Desaturate Strength="{Binding HasPhoneAFriend, Converter={StaticResource InverseBoolOpacityConverter}}"/>
+                </Image.Effect>
+            </Image>
+            <Image x:Name="Lifeline_ATA" 
+                   Source="../Assets/ClassicATA.png"     
+                   RenderTransformOrigin="0.5,0.5"                
+                   Opacity="{Binding HasAskTheAudience, Converter={StaticResource BoolOpacityConverter}, ConverterParameter=0.5}"
+                   Grid.Column="2" 
+                   Margin="12,0">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="Scale_ATA"/>
+                </Image.RenderTransform>
+                <Image.Effect>
+                    <effects:Desaturate Strength="{Binding HasAskTheAudience, Converter={StaticResource InverseBoolOpacityConverter}}" />
+                </Image.Effect>
+            </Image>
+
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel.Effect>
+                <DropShadowEffect ShadowDepth="3"
+                                      Color="#000000"
+                                      Opacity="1"
+                                      BlurRadius="10"/>
+            </StackPanel.Effect>
+
+            <local:ScoreControl Position="15" Amount="1000"
+                                IsWon="{Binding HasWon15}" 
+                                IsTopScore="{Binding IsTop15}" 
+                                Foreground="White"/>
+            <local:ScoreControl Position="14" Amount="500"
+                                IsWon="{Binding HasWon14}" 
+                                IsTopScore="{Binding IsTop14}" />
+            <local:ScoreControl Position="13" Amount="250"
+                                IsWon="{Binding HasWon13}" 
+                                IsTopScore="{Binding IsTop13}"  />
+            <local:ScoreControl Position="12" Amount="200"
+                                IsWon="{Binding HasWon12}" 
+                                IsTopScore="{Binding IsTop12}"   />
+            <local:ScoreControl Position="11" Amount="150"
+                                IsWon="{Binding HasWon11}" 
+                                IsTopScore="{Binding IsTop11}"   />
+            <local:ScoreControl Position="10" Amount="100"
+                                IsWon="{Binding HasWon10}" 
+                                IsTopScore="{Binding IsTop10}" 
+                                Foreground="White" />
+            <local:ScoreControl Position="9" Amount="80"
+                                IsWon="{Binding HasWon9}" 
+                                IsTopScore="{Binding IsTop9}" />
+            <local:ScoreControl Position="8" Amount="60"
+                                IsWon="{Binding HasWon8}" 
+                                IsTopScore="{Binding IsTop8}"   />
+            <local:ScoreControl Position="7" Amount="40"
+                                IsWon="{Binding HasWon7}" 
+                                IsTopScore="{Binding IsTop7}"  />
+            <local:ScoreControl Position="6" Amount="20"
+                                IsWon="{Binding HasWon6}" 
+                                IsTopScore="{Binding IsTop6}" />
+            <local:ScoreControl Position="5" Amount="10" 
+                                IsWon="{Binding HasWon5}" 
+                                IsTopScore="{Binding IsTop5}"  
+                                Foreground="White"/>
+            <local:ScoreControl Position="4" Amount="5" 
+                                IsWon="{Binding HasWon4}" 
+                                IsTopScore="{Binding IsTop4}" />
+            <local:ScoreControl Position="3" Amount="3" 
+                                IsWon="{Binding HasWon3}" 
+                                IsTopScore="{Binding IsTop3}" />
+            <local:ScoreControl Position="2" Amount="2" 
+                                IsWon="{Binding HasWon2}" 
+                                IsTopScore="{Binding IsTop2}" />
+            <local:ScoreControl Position="1" Amount="1" 
+                                IsWon="{Binding HasWon1}" 
+                                IsTopScore="{Binding IsTop1}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
