@@ -270,11 +270,11 @@ namespace uWindowCapture
         {
             if (!isValid) return;
 
-            window.cursorDraw = drawCursor;
+            window.cursorDraw = false;
 
             if (_image.overrideSprite == null || _image.overrideSprite.texture != window.texture)
             {
-                _image.overrideSprite = Sprite.Create(window.texture, new Rect(323, 149, 1038, 583), Vector2.zero);
+                _image.overrideSprite = Sprite.Create(window.texture, new Rect(462, 104 * 2, 988, 554), Vector2.zero);
             }
 
             

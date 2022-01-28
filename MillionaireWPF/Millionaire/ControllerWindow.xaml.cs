@@ -27,7 +27,7 @@ namespace Millionaire
         private ContestantWindow contestantWindow;
         private ControllerViewModel vm;
 
-        private record QuestionAction(string LetsPlay, string BackingTrack, string FinalAnswer, string SoundCueWon, string SoundCueLost, bool StopMusic = true);
+        private record QuestionAction(string LetsPlay, string BackingTrack, string FinalAnswer, string SoundCueWon, string SoundCueLost, bool StopMusic = true, bool Confetti = false);
 
         private QuestionAction[] actions = new QuestionAction[]
         {
@@ -45,7 +45,7 @@ namespace Millionaire
             new QuestionAction("Q12_LetsPlay", "Q12_Background", "Q12_FinalAnswer", "Q12_Win","Q12_Lose"),
             new QuestionAction("Q13_LetsPlay", "Q13_Background", "Q13_FinalAnswer", "Q13_Win","Q13_Lose"),
             new QuestionAction("Q14_LetsPlay", "Q14_Background", "Q14_FinalAnswer", "Q14_Win","Q14_Lose"),
-            new QuestionAction("Q15_LetsPlay", "Q15_Background", "Q15_FinalAnswer", "Q15_Win","Q15_Lose"),
+            new QuestionAction("Q15_LetsPlay", "Q15_Background", "Q15_FinalAnswer", "Q15_Win","Q15_Lose", Confetti: true),
         };
 
         public ControllerWindow()
@@ -98,7 +98,7 @@ namespace Millionaire
                     CQuestionButton.Foreground = Brushes.Black;
                     DQuestionButton.Foreground = Brushes.Black;
 
-                    vm.GameViewModel.Question = new QuestionViewModel(vm.Questions[new Random().Next(vm.Questions.Length)]);
+                    vm.GameViewModel.Question = new QuestionViewModel(vm.GameViewModel.Questions[vm.GameViewModel.QuestionNumber]);
 
                     if (action.LetsPlay != null)
                     {
@@ -255,6 +255,8 @@ namespace Millionaire
                     AudioManager.PlayCue(action.SoundCueWon);
                     if (action.StopMusic)
                         AudioManager.StopSong();
+                    if (action.Confetti)
+                        await vm.SendConfettiAsync();
 
                     await Task.Delay(1000);
                     ((Storyboard)overlayWindow.Question.Resources["ShowWinnings"]).Begin();
@@ -377,6 +379,11 @@ namespace Millionaire
         private void ExplainRules_Click(object sender, RoutedEventArgs e)
         {
             AudioManager.PlaySong("Explain_Rules", false);
+        }
+
+        private void Goodbye_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AudioManager.PlaySong("Goodbye", false);
         }
 
         private void WalkAway_MouseDoubleClick(object sender, MouseButtonEventArgs e)

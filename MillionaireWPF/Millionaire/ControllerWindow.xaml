@@ -60,17 +60,27 @@
                            VerticalAlignment="Center"
                            Margin="8,0"/>
             </StackPanel>
-            <StackPanel Margin="8,4"
-                        Orientation="Vertical"
-                        VerticalAlignment="Top">
-
-                <TextBlock>
-                    Q: <Run Text="{Binding GameViewModel.CurrentQuestionNumber, Mode=OneWay}"/>
-                </TextBlock>
-                <TextBlock>
-                    &#162;<Run Text="{Binding GameViewModel.CurrentQuestionWinnings, Mode=OneWay}"/>
-                </TextBlock>
-            </StackPanel>
+            <Grid Margin="8,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top">
+                    <TextBlock>
+                        Q: <Run Text="{Binding GameViewModel.CurrentQuestionNumber, Mode=OneWay}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        &#162;<Run Text="{Binding GameViewModel.CurrentQuestionWinnings, Mode=OneWay}"/>
+                    </TextBlock>
+                </StackPanel>
+                
+                <ComboBox x:Name="QuestionList"
+                          ItemsSource="{Binding QuestionSources}"
+                          SelectedItem="{Binding QuestionSource}"
+                          Grid.Column="1"
+                          VerticalAlignment="Center"/>
+            </Grid>
         </StackPanel>
 
         <Grid Grid.Column="1"
@@ -237,6 +247,11 @@
                     IsEnabled="{Binding IsInPlay}"
                     MouseDoubleClick="WalkAway_MouseDoubleClick"
                     Margin="4">Walk Away</Button>
+            <Button x:Name="Goodbye"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    MouseDoubleClick="Goodbye_MouseDoubleClick"
+                    Margin="4">Goodbye</Button>
         </Grid>
     </Grid>
 </Window>

@@ -54,6 +54,7 @@ namespace Millionaire
         private TwitchClient twitchClient;
         private bool isInPlay;
         private GameViewModel gameViewModel;
+        private string questionSource;
 
         public Random Random { get; set; }
         public bool IsInPlay { get => isInPlay; set => OnPropertySet(ref isInPlay, value); }
@@ -69,7 +70,11 @@ namespace Millionaire
             $"Conntected to {twitchClient.JoinedChannels.Count} channel." :
             "Connecting to Twitch";
 
-        public Question[] Questions { get; set; }
+        //public Question[] Questions { get; set; }
+
+        public string QuestionSource { get => questionSource; set => OnPropertySet(ref questionSource, value); }
+        public ObservableCollection<string> QuestionSources { get; set; }
+
         public ObservableCollection<StateViewModel> States { get; set; }
         public GameViewModel GameViewModel { get => gameViewModel; set => OnPropertySet(ref gameViewModel, value); }
         public float Duration { get; set; } = 0.75f;
@@ -99,6 +104,19 @@ namespace Millionaire
             States.Add(new StateViewModel() { StateIndex = 2, StateName = "Contestant Only", GoToState = new GoToStateCommand(parent) });
             States.Add(new StateViewModel() { StateIndex = 3, StateName = "Contestant Scoreboard", GoToState = new GoToStateCommand(parent) });
 
+            QuestionSources = new ObservableCollection<string>();
+            foreach (var item in Directory.EnumerateFiles("Assets", "*.json"))
+            {
+                using var stream = File.OpenRead(item);
+                var source = JsonDocument.Parse(stream);
+                if (source.RootElement.ValueKind == JsonValueKind.Array)
+                {
+                    QuestionSources.Add(Path.GetFileName(item));
+                }
+            }
+
+            QuestionSource = QuestionSources[0];
+
             NewGame();
         }
 
@@ -106,7 +124,9 @@ namespace Millionaire
         {
             IsInPlay = false;
             IsLost = false;
-            GameViewModel = new GameViewModel();
+
+            var questions = JsonSerializer.Deserialize<Question[]>(File.ReadAllText($"Assets/{QuestionSource}"));
+            GameViewModel = new GameViewModel(questions);
             GameViewModel.AskTheAudience = new AskTheAudienceViewModel(twitchClient);
             GameViewModel.PhoneAFriend = new PhoneAFriendViewModel();
         }
@@ -131,12 +151,8 @@ namespace Millionaire
             context.Post((o) => InvokePropertyChanged(""), null);
         }
 
-        public async void StartListening()
+        public void StartListening()
         {
-            using var questions = File.OpenRead("Assets/AllQuestions.json");
-            var file = await JsonSerializer.DeserializeAsync<QuestionsFile>(questions);
-            Questions = file.AllQuestions.Where(q => q.Choices != null && q.Choices.Length == 4).ToArray();
-
             twitchClient.Connect();
 
             httpListener.Prefixes.Add("http://localhost:12345/");
@@ -174,6 +190,24 @@ namespace Millionaire
                     {
                         var array = new byte[8] { 1, (byte)state, (byte)oldState, 0, 0, 0, 0, 0 };
                         BitConverter.TryWriteBytes(new Span<byte>(array, 4, 4), Duration);
+                        await item.SendAsync(new ArraySegment<byte>(array), WebSocketMessageType.Binary, true, default);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        internal async Task SendConfettiAsync()
+        {
+            foreach (var item in activeConnections)
+            {
+                try
+                {
+                    if (item.State == WebSocketState.Open)
+                    {
+                        var array = new byte[4] { 2, 0, 0, 0 };
                         await item.SendAsync(new ArraySegment<byte>(array), WebSocketMessageType.Binary, true, default);
                     }
                 }

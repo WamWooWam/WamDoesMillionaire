@@ -53,6 +53,11 @@ namespace Millionaire
             "1000",
         };
 
+        public GameViewModel(Question[] questions)
+        {
+            Questions = questions;
+        }
+
         public string CurrentWinnings
             => QuestionNumber > 0 ? winningsTable[QuestionNumber - 1] : "¢0";
 
@@ -78,6 +83,7 @@ namespace Millionaire
         public bool HasAskTheAudience { get => hasAskTheAudience; set => OnPropertySet(ref hasAskTheAudience, value); }
         public bool HasPhoneAFriend { get => hasPhoneAFriend; set => OnPropertySet(ref hasPhoneAFriend, value); }
 
+        public Question[] Questions { get; set; }
         public QuestionViewModel Question { get => _question; set => OnPropertySet(ref _question, value); }
         public AskTheAudienceViewModel AskTheAudience { get => askTheAudience; set => OnPropertySet(ref askTheAudience, value); }
         public PhoneAFriendViewModel PhoneAFriend { get; set; } = new PhoneAFriendViewModel();

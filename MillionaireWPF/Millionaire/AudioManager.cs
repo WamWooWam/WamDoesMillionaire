@@ -77,7 +77,7 @@ namespace Millionaire
                         var songItem = songs[action.Song];
                         if (songItem != activeSong)
                         {
-                            MediaPlayer.Volume = 1;
+                            MediaPlayer.Volume = 1f;
                             MediaPlayer.IsRepeating = action.IsRepeating;
                             MediaPlayer.Play(activeSong = songItem);
                         }
