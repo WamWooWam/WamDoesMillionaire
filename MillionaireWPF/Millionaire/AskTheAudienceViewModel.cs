@@ -58,6 +58,14 @@ namespace Millionaire
             this.actualTotalGuesses = 0;
             this.guessDictionary = new ConcurrentDictionary<string, char>();
 
+            this.done20 = false;
+            this.done10 = false;
+            this.done5 = false;
+            this.done4 = false;
+            this.done3 = false;
+            this.done2 = false;
+            this.done1 = false;
+
             this.InvokePropertyChanged("");
         }
 
@@ -74,11 +82,56 @@ namespace Millionaire
             this.timer = new DispatcherTimer(TimeSpan.FromSeconds(1 / 60.0), DispatcherPriority.Normal, OnTimerTick, Dispatcher.CurrentDispatcher);
         }
 
+        // THIS IS HORRIBLE
+        private bool done20;
+        private bool done10;
+        private bool done5;
+        private bool done4;
+        private bool done3;
+        private bool done2;
+        private bool done1;
+
         private void OnTimerTick(object sender, EventArgs e)
         {
             var delta = DateTimeOffset.Now - startTime.Value;
+            if (delta > TimeSpan.FromSeconds(10) && !done20)
+            {
+                this.client.SendMessage("wamwoowam", "20 SECONDS LEFT");
+                done20 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(20) && !done10)
+            {
+                this.client.SendMessage("wamwoowam", "10 SECONDS LEFT");
+                done10 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(25) && !done5)
+            {
+                this.client.SendMessage("wamwoowam", "5 SECONDS LEFT");
+                done5 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(26) && !done4)
+            {
+                this.client.SendMessage("wamwoowam", "4 SECONDS LEFT");
+                done4 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(27) && !done3)
+            {
+                this.client.SendMessage("wamwoowam", "3 SECONDS LEFT");
+                done3 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(28) && !done2)
+            {
+                this.client.SendMessage("wamwoowam", "2 SECONDS LEFT");
+                done2 = true;
+            }
+            if (delta > TimeSpan.FromSeconds(29) && !done1)
+            {
+                this.client.SendMessage("wamwoowam", "1 SECOND LEFT");
+                done1 = true;
+            }
             if (delta > TimeSpan.FromSeconds(30))
             {
+                this.client.SendMessage("wamwoowam", "VOTING COMPLETE");
                 Stop();
                 return;
             }
