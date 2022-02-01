@@ -7,3 +7,12 @@ This is the source code repository for my clone of Who Wants to be a Millionaire
 This code is public for historical and archive purposes, and I have no plan to clean it up. It was built over the course of less than a month with the goal of making something functional using skills I already had. It is not "good code".
 
 For obvious reasons, copyrighted music and sound effects are not included in this repository, if you wanted to use this code for some reason, you would need to source that yourself or remove that functionality.
+
+## MillionaireWPF
+This project contains the main frontend code and visuals, loads questions, controls the game, etc.
+
+## MillionaireUnity 
+This project provides the camera display as well as a screen capture of Discord.
+
+## QuestionPicker
+This project uses an algorithm to generate rough question sheets which were then hand tweaked for their difficulty curve.
