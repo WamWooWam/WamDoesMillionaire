@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/11337731/151895532-9e9a3cc5-1651-40a7-82e4-86ba59e36eb0.png)
+
 # Wam does Millionaire
 
 This is the source code repository for my clone of Who Wants to be a Millionaire that I streamed on Twitch between the 21st-30th of January 2022!
